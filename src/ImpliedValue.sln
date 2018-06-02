@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{419CC738-CCD5-411F-8A45-C994C35374CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpliedValue", "ImpliedValue\ImpliedValue.csproj", "{17FDA54D-BE25-41A3-960A-DE8A8B13EB99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpliedValue", "src\ImpliedValue\ImpliedValue.csproj", "{17FDA54D-BE25-41A3-960A-DE8A8B13EB99}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpliedValue.Tests", "src\ImpliedValue.Tests\ImpliedValue.Tests.csproj", "{8B9BCD73-238C-446A-9E5C-F30714F85999}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpliedValue.Tests", "ImpliedValue.Tests\ImpliedValue.Tests.csproj", "{8B9BCD73-238C-446A-9E5C-F30714F85999}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,9 +44,5 @@ Global
 		{8B9BCD73-238C-446A-9E5C-F30714F85999}.Release|x64.Build.0 = Release|x64
 		{8B9BCD73-238C-446A-9E5C-F30714F85999}.Release|x86.ActiveCfg = Release|x86
 		{8B9BCD73-238C-446A-9E5C-F30714F85999}.Release|x86.Build.0 = Release|x86
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{17FDA54D-BE25-41A3-960A-DE8A8B13EB99} = {419CC738-CCD5-411F-8A45-C994C35374CC}
-		{8B9BCD73-238C-446A-9E5C-F30714F85999} = {419CC738-CCD5-411F-8A45-C994C35374CC}
 	EndGlobalSection
 EndGlobal
