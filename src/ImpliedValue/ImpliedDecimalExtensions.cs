@@ -10,19 +10,14 @@ namespace ImpliedValue
             return new ImpliedDecimal(0);
         }
 
-        public static ImpliedDecimal ToImpliedDecimal(this decimal input, byte fractional)
+        public static ImpliedDecimal ToImpliedDecimal(this decimal input, byte scale)
         {
-            return new ImpliedDecimal(0, fractional);
+            return new ImpliedDecimal(0, scale);
         }
 
-        public static string ToImpliedDecimalString(this decimal input, byte fractional)
+        public static string ToImpliedDecimalString(this decimal input, byte scale)
         {
-            throw new NotImplementedException();
-        }
-
-        public static (string value, byte frac) ToImpliedDecimalStringTuple(this decimal input, byte fractional)
-        {
-            throw new NotImplementedException();
+            return new ImpliedDecimal(0, scale).ToString();
         }
     }
 }

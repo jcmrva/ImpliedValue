@@ -8,28 +8,12 @@ namespace ImpliedValue
         IEquatable<ImpliedDecimal>,
         IEquatable<Decimal>
     {
-
         public ImpliedDecimal(decimal original) : this(original, 2) { }
 
-        public ImpliedDecimal(int original) : this(original, 2) { }
-
         public ImpliedDecimal(decimal original, byte scale)
-        {
-            this.Value = Math.Floor((original * Divisor(scale)));
-            this.Scale = scale;
-            this.IsDerived = false;
-            this.AllowTruncation = false;
-        }
+            : this(original, scale, false) { }
 
-        public ImpliedDecimal(int original, byte scale)
-        {
-            this.Value = Math.Floor((original * Divisor(scale)));
-            this.Scale = scale;
-            this.IsDerived = false;
-            this.AllowTruncation = false;
-        }
-
-        public ImpliedDecimal(int original, byte scale, bool allowTruncate)
+        public ImpliedDecimal(decimal original, byte scale, bool allowTruncate)
         {
             this.Value = Math.Floor((original * Divisor(scale)));
             this.Scale = scale;
@@ -40,10 +24,6 @@ namespace ImpliedValue
         public decimal Value { get; private set; }
 
         public bool AllowTruncation { get; private set; }
-
-        ///public decimal Value2 { get; private set; } 
-        //shift . floor remaining fraction
-        /// require flag to floor, else excp? 
 
         public byte Scale { get; private set; }
 
@@ -56,12 +36,40 @@ namespace ImpliedValue
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return this.Value.ToString();
+        }
+
+        public string ToString(string format)
+        {
+            if (format == "p" && Math.Sign(this.Value) == -1)
+            {
+                var val = Math.Abs(this.Value).ToString();
+                return $"({val})";
+            }
+            else
+            {
+                return this.ToString();
+            }
         }
 
         public decimal ToDecimal()
         {
             return this.Value / Divisor(this.Scale);
+        }
+
+        public decimal ToDecimal(byte scale, bool truncate = false)
+        {
+            if (truncate && !this.AllowTruncation)
+            {
+                throw new InvalidOperationException(
+                    $"Truncation not allowed unless value is constructed with {nameof(this.AllowTruncation)} set to true.");
+            }
+            int s = scale;
+            if (truncate && scale < this.Scale)
+            {
+                s = (int)this.Scale - (int)scale;
+            }
+            return Math.Floor(this.Value / Divisor((byte)s));
         }
 
         public static implicit operator Decimal(ImpliedDecimal d)
